@@ -32,9 +32,6 @@ def refresh(time1=''):
     time2=time.strftime("%H:%M:%S")
     if time2 != time1:
         time1 = time2
-        label_clock.config(text=time2)
-
-        clock.after(200, refresh)
 
 #Inhalt - aktueller Tag etc.
 weekday = time.strftime("%A")
