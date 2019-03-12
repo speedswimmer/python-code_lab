@@ -1,16 +1,13 @@
 import tkinter
 import time
 
-def ende():
-    main.destroy()
-    
 main=tkinter.Tk()
 main.title("Programm")
 
 content=time.asctime()
 fr=tkinter.Frame(main, width=300, height=200)
 tx=tkinter.Label(main, text=content)
-button1=tkinter.Button(main,text="Ende", command=ende)
+button1=tkinter.Button(main,text="Ende", command=main.destroy)
 #button2=tkinter.button(main,text="Refresh", command=refresh)
 
 def refresh():
