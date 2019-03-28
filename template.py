@@ -8,4 +8,4 @@ root = Tk()
 
 #code goes here
 
-root mainlooop()
+root.mainloop()
