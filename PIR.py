@@ -10,6 +10,8 @@ GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 #Pin for LED
 GPIO.setup(11, GPIO.OUT)
 
+#f=open("logfile.txt", "w+")
+
 cam = picamera.PiCamera()
 cam.resolution = (1080,768)
 
