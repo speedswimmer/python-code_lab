@@ -33,7 +33,6 @@ try:
         blue_led()
         green_led()
         red_led()
-        
         #GPIO.output(7, GPIO.HIGH)
         #print("LED is ON!")
         #time.sleep(0.5)
