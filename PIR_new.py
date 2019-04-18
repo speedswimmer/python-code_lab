@@ -2,25 +2,36 @@ import RPi.GPIO as GPIO
 import time, sys
 import picamera
 import os
+from os import path
 import ftplib
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+def logentry(entry):
+    #Check if Logfile exists and open it accordingly or create a new file
+    if path.exists('/home/pi/Pictures/PIR/log.txt') == True:
+        f=open('/home/pi/Pictues/PIR/log.txt', 'a')
+    else:
+        f=open('/home/pi/Pictures/PIR/log.txt', 'w+')
+    f.write(entry)
+    f.close
+
 #Pin for LED
 GPIO.setup(11, GPIO.OUT)
 
-#f=open("logfile.txt", "w+")
+#f=open("/home/pi/Pictures/PIR/logfile.txt", "w+")
 
 cam = picamera.PiCamera()
 cam.resolution = (1080,768)
 
 def pic():
     t=time.strftime('%Y_%m_%d-%H:%M:%S')
+    filename = ('bild_%s.jpg' %t)
     cam.capture('/home/pi/Pictures/PIR/bild_%s.jpg' %t)
-    upload()
-
+    logentry(filename)
+   
 def actual_time():
     tstamp = time.strftime("%H:%M:%S")
     return tstamp
@@ -36,15 +47,6 @@ def motion(pin):
     print("Achtung! Bewegung erkannt - " + actual_time())
     led()
     pic()
-    return
-
-def upload():
-    session = ftplib.FTP('ssh.strato.de', 'sftp_@matthiashartmann.de', 'Speedy123!')
-    directory = "/Pictures"
-    file = open('bild.jpg','rb')
-    session.cwd(directory)
-    file.close()
-    session.quite()
     return
 
 #Program Start
