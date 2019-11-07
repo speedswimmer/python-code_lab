@@ -9,13 +9,13 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-def logentry(entry):
-    #Check if Logfile exists and open it accordingly or create a new file
+#Check if Logfile exists and open it accordingly or create a new file
+def enterlog(content):
     if path.exists('/home/pi/Pictures/PIR/log.txt') == True:
         f=open('/home/pi/Pictues/PIR/log.txt', 'a')
     else:
         f=open('/home/pi/Pictures/PIR/log.txt', 'w+')
-    f.write(entry)
+    f.write(content)
     f.close
 
 #Pin for LED
@@ -30,7 +30,7 @@ def pic():
     t=time.strftime('%Y_%m_%d-%H:%M:%S')
     filename = ('bild_%s.jpg' %t)
     cam.capture('/home/pi/Pictures/PIR/bild_%s.jpg' %t)
-    logentry(filename)
+    enterlog(filename)
    
 def actual_time():
     tstamp = time.strftime("%H:%M:%S")
@@ -68,6 +68,7 @@ try:
 except KeyboardInterrupt:
     os.system("vcgencmd display_power 1") 
     print('Programm abgebrochen!')
+    f.close
     GPIO.cleanup()
     sys.exit()
         
