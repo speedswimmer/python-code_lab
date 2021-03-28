@@ -1,3 +1,5 @@
+#script to send emails using gmail account
+
 import os
 import time
 import smtplib
@@ -17,22 +19,9 @@ msg['To'] = receipient
 msg.set_content('How about dinner at 6pm this Saturday?')
 
 with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-#with smtplib.SMTP('localhost', 1025) as smtp:
-#    smtp.ehlo()
-#    smtp.starttls()
-#    smtp.ehlo()
-
     smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-
-    #subject = 'Grab dinner this weekend?'
-    #body = 'How about dinner at 6pm this Saturday?'
-    #salut = 'CU, Name'
-
-    #msg = f'Subject: {subject}\n\n{body}\n\n{salut}'
-
     for i in range (1,num_e+1):
         time.sleep(0.1)
         print("Email",i, " sent")
-        #smtp.sendmail(EMAIL_ADDRESS, receipient, msg)
         smtp.send_message(msg)
 
