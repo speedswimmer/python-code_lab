@@ -10,11 +10,6 @@ except FritzConnectionException:
     print("Can't connect to FritzBox!")
     sys.exit(0)
     
-
-#status = (fc.call_action('WLANConfiguration3', 'GetInfo'))
-#for element in status.items():
-#    print(element)
-
 def getFritzStatus():
     fs = FritzStatus(fc)
     # monitor = fs.get_monitor_data()
@@ -25,7 +20,6 @@ def getFritzStatus():
     print("FritzBox is connected:", fs.is_connected)
     print("FritzBox uptime:", fs.str_uptime)
     print("FritzBox external IP4: %s\n" %(fs.external_ip))
-
 
 def getWLANstatus():
     action = 'GetInfo'
@@ -59,9 +53,5 @@ def getHostStatus():
             hoststatus = hosts[i]["status"]
             print(f"{ipaddress:18} {hostname:25} - {hoststatus}")
 
-#getWLANstatus()
-
-with open("log.txt", "a") as f:
-    f.write(time.strftime("%d.%m.%Y um %H:%M:%S Uhr\n"))
-#    f.write(str(getFritzStatus()))
+getWLANstatus()
 getHostStatus()
