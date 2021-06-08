@@ -1,4 +1,4 @@
-# Script to check connection status on FritzBox!
+# Script to check connection status and host status on local FritzBox!
 import time, sys
 from fritzconnection import FritzConnection
 from fritzconnection.core.exceptions import ActionError, FritzConnectionException, FritzServiceError
@@ -13,8 +13,6 @@ except FritzConnectionException:
     
 def getFritzStatus():
     fs = FritzStatus(fc)
-    # monitor = fs.get_monitor_data()
-    # print(monitor)
     print("*************** Status FritzBox! ********************\n")
     print("FritzBox Model: %s" % (fs.modelname))
     print("FritzBox is linked: ",fs.is_linked)
@@ -31,11 +29,9 @@ def getWLANstatus():
             wlan_status = fc.call_action(f'WLANConfiguration{i}', action)
         except FritzServiceError:
             break
-        #status.append(wlan_status["NewSSID"])
         print(wlan_status["NewSSID"] + ": " + wlan_status["NewStatus"])
-        #status.append(wlan_status["NewStatus"])
-        #print(wlan_status["NewStatus"])
     print("\n")
+    
 def getHostStatus():
     fh = FritzHosts(fc)
     hosts = fh.get_hosts_info()
