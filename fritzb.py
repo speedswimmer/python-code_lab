@@ -1,3 +1,4 @@
+# Script to check connection status on FritzBox!
 import time, sys
 from fritzconnection import FritzConnection
 from fritzconnection.core.exceptions import ActionError, FritzConnectionException, FritzServiceError
@@ -5,7 +6,7 @@ from fritzconnection.lib.fritzhosts import FritzHosts
 from fritzconnection.lib.fritzstatus import FritzStatus
 
 try:
-    fc = FritzConnection(address='192.168.178.1', password='Sprosse2102', use_tls=True)
+    fc = FritzConnection(address='Your_FritzBox_IP4_Address', password='Your_Password', use_tls=True)
 except FritzConnectionException:
     print("Can't connect to FritzBox!")
     sys.exit(0)
