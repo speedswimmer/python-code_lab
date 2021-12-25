@@ -6,10 +6,10 @@ from fritzconnection.lib.fritzhosts import FritzHosts
 from fritzconnection.lib.fritzstatus import FritzStatus
 
 try:
-    fc = FritzConnection(address='Your_FritzBox_IP4_Address', password='Your_Password', use_tls=True)
+    fc = FritzConnection(address='MyFritzBox_IP4_Address', password='MyFritzBox_Password', use_tls=True)
 except FritzConnectionException:
     print("Can't connect to FritzBox!")
-    sys.exit(0)
+    sys.exit()
     
 def getFritzStatus():
     fs = FritzStatus(fc)
@@ -32,14 +32,14 @@ def getWLANstatus():
         print(wlan_status["NewSSID"] + ": " + wlan_status["NewStatus"])
     print("\n")
     
-def getHostStatus():
+def getHOSTStatus():
     fh = FritzHosts(fc)
     hosts = fh.get_hosts_info()
     activehosts = fh.get_active_hosts()
     print("**********************************\n")
-    print("Übersicht der bekannten Hosts:")
-    print("Es sind %s Hosts bekannt!\n" %(len(hosts)))
-    print("Folgende %s Hosts sind aktive im Netzwerk:" %(len(activehosts)))
+    print("Overview known hosts:")
+    print("Following %s hosts are known!\n" %(len(hosts)))
+    print("Following %s hosts are active in your network:" %(len(activehosts)))
     print("IP-Address         Name                      Status")
     print("---------------------------------------------------")
 
@@ -51,4 +51,4 @@ def getHostStatus():
             print(f"{ipaddress:18} {hostname:25} - {hoststatus}")
 
 getWLANstatus()
-getHostStatus()
+getHOSTStatus()
