@@ -9,7 +9,7 @@ def program_stop():
 
 eingabe = input(str("Nach welchem Produkt soll gesucht werden? "))
 crawl_URL = "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=NEC+" + eingabe
-#crawl_URL = "https://bootstrap.pypa.io/get-pip.py"
+
 print (crawl_URL)
 
 try:
