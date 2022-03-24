@@ -9,7 +9,6 @@ GPIO.setup(11, GPIO.OUT)
 GPIO.setup(15, GPIO.OUT)
 t = 0.15
 
-
 def blue_led():
     GPIO.output(7, GPIO.HIGH)
     print("Blue LED on!")
@@ -33,12 +32,6 @@ try:
         blue_led()
         green_led()
         red_led()
-        #GPIO.output(7, GPIO.HIGH)
-        #print("LED is ON!")
-        #time.sleep(0.5)
-        #GPIO.output(7, GPIO.LOW)
-        #print("LED is Out!")
-        #time.sleep(0.5)
     else:                       
         GPIO.output(7, GPIO.LOW)
         GPIO.output(11, GPIO.LOW)
