@@ -5,7 +5,8 @@ from datetime import datetime
 import json
 
 sensor = Adafruit_DHT.DHT22
-pin = 12
+pin = 23
+interval = 1800
 
 print("[press ctrl+c to stop the script]...")
 
@@ -25,7 +26,7 @@ try:
                                 json.dump(entry, f)
                 else:
                         print("Failed to get reading. Try again!")
-                time.sleep(300)
+                time.sleep(interval)
 
 except KeyboardInterrupt:
-        print("Script stopped!")
+        print("[...script stopped!]")
