@@ -36,7 +36,7 @@ while True:
         pressure = bme280data.pressure
 
         # Check if this is the first loop iteration, or if it's been more than
-        # 3 hours since the last temperature measurement.
+        # 4 hours (=14400 seconds) since the last temperature measurement.
         if highest_temp is None or time.monotonic() - high_time >= 14400:
                 highest_temp = temp
                 lowest_temp = temp
@@ -60,6 +60,7 @@ while True:
                                         timestamp = time.strftime("%d.%m.%y - %H:%M")
                                         f.write(f'{timestamp} - ALERT! Temperature dropped by more than 3°C within last 4 hours!\n')
                                 send_email('ALERT - Temperature has dropped by more than 3°C within last 4 hours!')
+                                #print(f'Temperature range is {temp_range:.2f} °C between {lowest_temp:.2f} and {highest_temp:.2f} °Celsius')
 
                                 # Update the highest and lowest temperature available
                                 highest_temp = temp
