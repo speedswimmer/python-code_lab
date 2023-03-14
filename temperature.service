@@ -1,0 +1,11 @@
+[Unit]
+Description=Temperature sensore
+After=Network.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/Scripts/temp_alert.py
+User=root
+
+[Install]
+WantedBy=multi-user.target
